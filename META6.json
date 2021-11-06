@@ -12,6 +12,7 @@
   "name": "Array::Unsorted::Map",
   "perl": "6.d",
   "provides": {
+    "Array::Unsorted::Map": "lib/Array/Unsorted/Map.rakumod"
   },
   "resources": [
   ],

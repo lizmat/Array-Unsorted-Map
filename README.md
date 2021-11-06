@@ -1,3 +1,5 @@
+[![Actions Status](https://github.com/lizmat/Array-Unsorted-Map/workflows/test/badge.svg)](https://github.com/lizmat/Array-Unsorted-Map/actions)
+
 NAME
 ====
 
