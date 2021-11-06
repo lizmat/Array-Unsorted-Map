@@ -1,7 +1,7 @@
 use Test;
 use Array::Unsorted::Map;
 
-plan 26;
+plan 28;
 
 my @keys   = <a b>;
 my @o-keys = @keys.map: *.WHICH;
@@ -17,6 +17,7 @@ my sub which-finder(\keys, \key) {
 sub general-tests(%map) {
     isa-ok %map, Array::Unsorted::Map, 'did we get the right object type';
 
+    is %map.elems, 2, 'did we get correct number of elements';
     is %map<a>,  42, 'did we get value of a';
     is %map<b>, 666, 'did we get value of b';
     is-deeply %map<c>, Nil, 'did we get no value for c';

@@ -1,6 +1,6 @@
 my sub finder(\keys, \key) { keys.first(* eq key, :k) }
 
-class Array::Unsorted::Map:ver<0.0.1>:auth<zef:lizmat> does Associative {
+class Array::Unsorted::Map:ver<0.0.2>:auth<zef:lizmat> does Associative {
     has $.keys   is built(:bind) is required;
     has $.values is built(:bind) is required;
     has &.finder is built(:bind) = &finder;
@@ -28,6 +28,8 @@ class Array::Unsorted::Map:ver<0.0.1>:auth<zef:lizmat> does Associative {
     method iterator() {
         self.pairs.iterator
     }
+
+    method elems() { $!keys.elems }
 }
 
 =begin pod
