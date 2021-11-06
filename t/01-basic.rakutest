@@ -1,0 +1,60 @@
+use Test;
+use Array::Unsorted::Map;
+
+plan 26;
+
+my @keys   = <a b>;
+my @o-keys = @keys.map: *.WHICH;
+my @values = 42, 666;
+my %map;
+my @pushed;
+
+my sub which-finder(\keys, \key) {
+    my $which := key.WHICH;
+    keys.first(* eq $which, :k)
+}
+
+sub general-tests(%map) {
+    isa-ok %map, Array::Unsorted::Map, 'did we get the right object type';
+
+    is %map<a>,  42, 'did we get value of a';
+    is %map<b>, 666, 'did we get value of b';
+    is-deeply %map<c>, Nil, 'did we get no value for c';
+
+    is-deeply %map<a>:exists,  True, 'does a exist';
+    is-deeply %map<b>:exists,  True, 'does b exist';
+    is-deeply %map<c>:exists, False, 'does c not exist';
+    is %map.values, "42 666", 'did we get the values in right order';
+
+    %map
+}
+
+%map := general-tests
+  Array::Unsorted::Map.new(:@keys, :@values);
+
+is %map.keys,   "a b",    'did we get the keys in right order';
+is %map.kv, "a 42 b 666", 'did we get the kv in right order';
+is %map.pairs.Str, "a\t42 b\t666", 'did we get the pairs in right order';
+is %map.anti-pairs.Str, "42\ta 666\tb", 'did we get anti-pairs in right order';
+
+%map.iterator.push-all(@pushed);
+is @pushed.Str, "a\t42 b\t666", 'did we the iterator produce in right order';
+@pushed = ();
+
+%map := general-tests
+  Array::Unsorted::Map.new(:keys(@o-keys), :@values, :finder(&which-finder));
+
+is %map.keys,   "Str|a Str|b",
+  'did we get the keys in right order';
+is %map.kv, "Str|a 42 Str|b 666",
+ 'did we get the kv in right order';
+is %map.pairs.Str, "Str|a\t42 Str|b\t666",
+  'did we get the pairs in right order';
+is %map.anti-pairs.Str, "42\tStr|a 666\tStr|b",
+  'did we get anti-pairs in right order';
+
+%map.iterator.push-all(my @pushed);
+is @pushed.Str, "Str|a\t42 Str|b\t666",
+  'did we the iterator produce in right order';
+
+# vim: expandtab shiftwidth=4
