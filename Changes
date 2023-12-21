@@ -2,6 +2,11 @@ Revision history for Array-Unsorted-Map
 
 {{$NEXT}}
 
+0.0.3  2023-12-21T15:26:17+01:00
+    - Add support for .Numeric, .Int and .Bool
+    - Add sponsor link
+    - Update copyright year
+
 0.0.2  2021-11-06T20:34:09+01:00
     - Add support for .elems method
 

@@ -1,7 +1,7 @@
 my sub finder(\keys, \key) { keys.first(* eq key, :k) }
 
-class Array::Unsorted::Map:ver<0.0.2>:auth<zef:lizmat> does Associative {
-    has $.keys   is built(:bind) is required;
+class Array::Unsorted::Map:ver<0.0.3>:auth<zef:lizmat> does Associative {
+    has $.keys   is built(:bind) is required handles <elems Numeric Int Bool>;
     has $.values is built(:bind) is required;
     has &.finder is built(:bind) = &finder;
 
@@ -28,8 +28,6 @@ class Array::Unsorted::Map:ver<0.0.2>:auth<zef:lizmat> does Associative {
     method iterator() {
         self.pairs.iterator
     }
-
-    method elems() { $!keys.elems }
 }
 
 =begin pod
@@ -42,7 +40,6 @@ Array::Unsorted::Map - Provide a Map interface for 2 unsorted lists
 
 =begin code :lang<raku>
 
-use Array::Unsorted::Util;
 use Array::Unsorted::Map;
 
 my @keys   = <b a>;
@@ -83,12 +80,16 @@ This is then expected to either return an index position or Nil.
 
 Elizabeth Mattijsen <liz@raku.rocks>
 
-=head1 COPYRIGHT AND LICENSE
-
-Copyright 2021 Elizabeth Mattijsen
-
 Source can be located at: https://github.com/lizmat/Array-Unsorted-Map .
 Comments and Pull Requests are welcome.
+
+If you like this module, or what I’m doing more generally, committing to a
+L<small sponsorship|https://github.com/sponsors/lizmat/>  would mean a great
+deal to me!
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright 2021, 2023 Elizabeth Mattijsen
 
 This library is free software; you can redistribute it and/or modify it under the Artistic License 2.0.
 
