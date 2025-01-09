@@ -1,6 +1,6 @@
 my sub finder(\keys, \key) { keys.first(* eq key, :k) }
 
-class Array::Unsorted::Map:ver<0.0.3>:auth<zef:lizmat> does Associative {
+class Array::Unsorted::Map:ver<0.0.4>:auth<zef:lizmat> does Associative {
     has $.keys   is built(:bind) is required handles <elems Numeric Int Bool>;
     has $.values is built(:bind) is required;
     has &.finder is built(:bind) = &finder;

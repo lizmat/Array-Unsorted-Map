@@ -2,6 +2,10 @@ Revision history for Array-Unsorted-Map
 
 {{$NEXT}}
 
+0.0.4  2025-01-09T17:34:00+01:00
+    - Add CI badge for each OS
+    - Update copyright year
+
 0.0.3  2023-12-21T15:26:17+01:00
     - Add support for .Numeric, .Int and .Bool
     - Add sponsor link
