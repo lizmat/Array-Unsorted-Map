@@ -1,3 +1,4 @@
 .precomp/
 /Array-Unsorted-Map-*
 /releases/
+*.rakucov
